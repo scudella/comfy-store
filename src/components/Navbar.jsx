@@ -1,30 +1,33 @@
-import { BsCart3, BsMoonFill, BsSunFill } from 'react-icons/bs';
-import { FaBarsStaggered } from 'react-icons/fa6';
-import { NavLink } from 'react-router-dom';
-import NavLinks from './NavLinks';
-import { useEffect, useState } from 'react';
+import {BsCart3, BsMoonFill, BsSunFill} from 'react-icons/bs'
+import {FaBarsStaggered} from 'react-icons/fa6'
+import {NavLink} from 'react-router-dom'
+import NavLinks from './NavLinks'
+import {useEffect, useState} from 'react'
+import {useSelector} from 'react-redux'
 
 const themes = {
   nord: 'nord',
   dim: 'dim',
-};
+}
 
 const getThemeFromLocalStorage = () => {
-  return localStorage.getItem('theme') || themes.nord;
-};
+  return localStorage.getItem('theme') || themes.nord
+}
 
 const Navbar = () => {
-  const [theme, setTheme] = useState(getThemeFromLocalStorage());
+  const [theme, setTheme] = useState(getThemeFromLocalStorage())
   const handleTheme = () => {
-    const { nord, dim } = themes;
-    const newTheme = theme === nord ? dim : nord;
-    setTheme(newTheme);
-  };
+    const {nord, dim} = themes
+    const newTheme = theme === nord ? dim : nord
+    setTheme(newTheme)
+  }
 
   useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem('theme', theme);
-  }, [theme]);
+    document.documentElement.setAttribute('data-theme', theme)
+    localStorage.setItem('theme', theme)
+  }, [theme])
+
+  const numItemsInCart = useSelector((state) => state.cartState.numItemsInCart)
 
   return (
     <nav className='bg-base-200'>
@@ -67,13 +70,13 @@ const Navbar = () => {
             <div className='indicator'>
               <BsCart3 className='h-6 w-6' />
               <span className='badge badge-sm badge-primary indicator-item'>
-                8
+                {numItemsInCart}
               </span>
             </div>
           </NavLink>
         </div>
       </div>
     </nav>
-  );
-};
-export default Navbar;
+  )
+}
+export default Navbar
