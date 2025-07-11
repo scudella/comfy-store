@@ -1,4 +1,4 @@
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import {RouterProvider, createBrowserRouter} from 'react-router-dom'
 
 import {
   About,
@@ -12,16 +12,17 @@ import {
   Products,
   Register,
   SingleProduct,
-} from './pages';
+} from './pages'
 
-import { ErrorElement } from './components';
+import {ErrorElement} from './components'
 
 // loaders
-import { loader as landingLoader } from './pages/Landing';
-import { loader as singleProductLoader } from './pages/SingleProduct';
-import { loader as productsLoader } from './pages/Products';
+import {loader as landingLoader} from './pages/Landing'
+import {loader as singleProductLoader} from './pages/SingleProduct'
+import {loader as productsLoader} from './pages/Products'
 
 //actions
+import {action as registerAction} from './pages/Register'
 
 const router = createBrowserRouter([
   {
@@ -74,10 +75,11 @@ const router = createBrowserRouter([
     path: '/register',
     element: <Register />,
     errorElement: <Error />,
+    action: registerAction,
   },
-]);
+])
 
 const App = () => {
-  return <RouterProvider router={router} />;
-};
-export default App;
+  return <RouterProvider router={router} />
+}
+export default App
